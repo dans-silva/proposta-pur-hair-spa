@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Proposta de parceria audiovisual da Visto Studio para o Pur Hair Spa.">
+<meta property="og:title" content="Proposta de parceria audiovisual | Visto Studio para Pur Hair Spa">
+<meta property="og:description" content="Uma produção contínua para registrar o cuidado de cada atendimento no Pur Hair Spa.">
+<meta property="og:type" content="website">
+<meta name="robots" content="noindex">
+<title>Proposta Pur Hair Spa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Jost:wght@400;500&display=swap">
+<style>
+/* Layout: tela dividida. À esquerda, um palco escuro e fixo com as duas marcas e o vídeo gravado no Pur, que segue tocando; à direita, a proposta em marfim, lida com calma. No celular, o vídeo vira uma janela flutuante. Visual único e deliberado. */
+:root {
+  color-scheme: light;
+  --ivory: #f3eee5;
+  --linen: #e9e1d2;
+  --ink: #2a261f;
+  --ink-soft: #645d50;
+  --stage: #1b1c16;
+  --olive: #3d402e;
+  --olive-line: #5a5e46;
+  --on-dark: #eee8db;
+  --on-dark-soft: #aaa493;
+  --champagne: #b5a07b;
+  --rule: #d6cdbb;
+
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --text: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+
+  --gutter: clamp(22px, 5vw, 72px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ivory); color: var(--ink);
+  font-family: var(--text); font-size: 17px; line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+@media (min-width: 1100px) { body { font-size: 18px; } }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--champagne); outline-offset: 3px; }
+
+h1, h2 {
+  font-family: var(--display); font-weight: 400; font-optical-sizing: auto;
+  line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; margin: 0;
+}
+h1 { font-size: clamp(2.6rem, 4.6vw, 4rem); }
+h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); }
+h1 em, h2 em { font-style: italic; }
+p { margin: 0; text-wrap: pretty; }
+.label {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+}
+
+/* ---------- Estrutura ---------- */
+.layout { display: flex; flex-direction: column; }
+.stage, .content { display: contents; }
+.marks { order: 1; }
+.intro { order: 2; }
+.player-slot { order: 3; }
+.content > section { order: 5; }
+.site-foot { order: 6; }
+
+@media (min-width: 760px) {
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .content { grid-column: 1; grid-row: 1; }
+  .stage {
+    grid-column: 2; grid-row: 1;
+    display: flex; flex-direction: column; gap: 28px;
+    position: sticky; top: 0; height: 100vh; height: 100dvh;
+    background: var(--stage); color: var(--on-dark);
+    padding: 36px clamp(28px, 3.4vw, 52px) 32px;
+  }
+  .content { display: block; min-width: 0; }
+  .marks { justify-content: center; }
+}
+
+/* ---------- Marcas ---------- */
+.marks {
+  background: var(--stage); color: var(--on-dark);
+  display: flex; align-items: center; justify-content: center; gap: clamp(20px, 4vw, 34px);
+  padding: 26px var(--gutter) 22px;
+}
+@media (min-width: 760px) { .marks { padding: 0; background: none; justify-content: center; } }
+.marks .visto { width: clamp(96px, 9vw, 118px); height: auto; }
+.marks .sep { width: 1px; align-self: stretch; background: var(--olive-line); margin-block: 6px; }
+.marks .pur {
+  width: clamp(62px, 5.6vw, 76px); height: auto;
+}
+
+/* ---------- Palco do vídeo ---------- */
+.player-slot {
+  background: var(--stage);
+  padding: 32px var(--gutter) 36px;
+  display: grid; justify-items: center; gap: 18px;
+}
+@media (min-width: 760px) {
+  .player-slot { background: none; padding: 0; flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
+}
+.frame {
+  width: min(74vw, 330px); aspect-ratio: 9 / 16; max-width: 100%; position: relative;
+}
+@media (min-width: 760px) { .frame { width: auto; height: min(calc(100dvh - 170px), 820px, calc((50vw - 72px) * 16 / 9)); flex: none; } }
+
+.player {
+  position: absolute; inset: 0; background: #000; border-radius: 3px; overflow: hidden;
+  transition: box-shadow .3s ease;
+}
+.player video { width: 100%; height: 100%; object-fit: cover; }
+.player .mini-actions { display: none; }
+.play {
+  position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.55); background: rgba(27,28,22,.5); color: #fff; cursor: pointer;
+  display: grid; place-items: center; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.play svg { width: 24px; height: 24px; margin-left: 4px; }
+.player.floating .play { width: 44px; height: 44px; }
+.player.floating .play svg { width: 16px; height: 16px; }
+
+.controls { display: grid; justify-items: center; gap: 14px; width: 100%; }
+.switch { display: flex; gap: 6px; padding: 4px; border: 1px solid var(--olive-line); border-radius: 999px; }
+.switch button {
+  border: 0; background: none; cursor: pointer; border-radius: 999px;
+  padding: 8px 16px; font-size: 0.8rem; letter-spacing: .04em; color: var(--on-dark-soft);
+}
+.switch button[aria-pressed="true"] { background: var(--on-dark); color: var(--stage); }
+.under { display: flex; align-items: center; gap: 16px; color: var(--on-dark-soft); font-size: 0.8rem; flex-wrap: wrap; justify-content: center; text-align: center; }
+.sound {
+  border: 1px solid var(--olive-line); background: none; border-radius: 999px; cursor: pointer;
+  padding: 7px 14px; font-size: 0.72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark);
+}
+.sound:hover, .switch button:hover { color: var(--on-dark); }
+.sound:hover { border-color: var(--champagne); }
+
+/* Janela flutuante no celular */
+.player.floating {
+  position: fixed; inset: auto; z-index: 20;
+  right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  width: 118px; aspect-ratio: 9 / 16; height: auto;
+  border-radius: 8px; box-shadow: 0 14px 40px rgba(20, 18, 12, .35), 0 0 0 1px rgba(255,255,255,.12);
+  cursor: pointer;
+}
+.player.floating .mini-actions {
+  display: flex; position: absolute; inset: 6px 6px auto auto; gap: 4px;
+}
+.mini-actions button {
+  width: 30px; height: 30px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(20, 20, 16, .62); color: #fff; display: grid; place-items: center;
+}
+.mini-actions svg { width: 14px; height: 14px; }
+
+/* ---------- Conteúdo ---------- */
+.intro, .content > section { padding-inline: var(--gutter); }
+.measure { max-width: 600px; }
+@media (min-width: 760px) { .measure { margin-inline: auto; } }
+
+.intro { padding-block: clamp(44px, 7vw, 120px) clamp(40px, 6vw, 72px); background: var(--ivory); }
+.intro .measure { display: grid; gap: 26px; }
+.intro .label { color: var(--olive); }
+.intro .lead { font-size: 1.12em; color: var(--ink); max-width: 30ch; }
+@media (min-width: 760px) { .intro { min-height: 78vh; display: flex; align-items: center; } }
+
+.content > section { padding-block: clamp(56px, 8vw, 96px); }
+.content > section + section { border-top: 1px solid var(--rule); }
+.section-body { display: grid; gap: 22px; }
+.section-body > .label { color: var(--olive); }
+.section-body p { color: var(--ink-soft); }
+.section-body p.first { color: var(--ink); }
+
+.facts { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--rule); }
+.facts li { padding: 20px 16px 20px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 4px; }
+.facts li:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--rule); }
+.facts strong { font-family: var(--display); font-weight: 400; font-size: 1.7rem; line-height: 1.15; color: var(--olive); }
+.facts span { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.45; }
+
+.steps { list-style: none; margin: 10px 0 0; padding: 0; counter-reset: s; }
+.steps li {
+  counter-increment: s; display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0 14px;
+  padding: 18px 0; border-top: 1px solid var(--rule);
+}
+.steps li:last-child { border-bottom: 1px solid var(--rule); }
+.steps li::before {
+  content: counter(s); font-family: var(--display); font-style: italic; font-size: 1.4rem;
+  color: var(--champagne); line-height: 1.35;
+}
+.steps b { font-weight: 500; color: var(--ink); display: block; }
+.steps span { color: var(--ink-soft); font-size: 0.96rem; }
+
+.investment { background: var(--olive); color: var(--on-dark); }
+.content > section.investment { border-top: 0; }
+.investment .section-body > .label { color: var(--champagne); }
+.investment p { color: var(--on-dark); opacity: .85; }
+.price { font-family: var(--display); display: flex; align-items: flex-start; gap: .14em; line-height: 1; font-variant-numeric: lining-nums; }
+.price .cur { font-size: 1.6rem; margin-top: .55em; }
+.price .num { font-size: clamp(4.4rem, 9vw, 6.6rem); letter-spacing: -0.02em; }
+.price-note { color: var(--on-dark-soft); margin-top: -8px; }
+.investment ul { list-style: none; margin: 6px 0 0; padding: 0; border-top: 1px solid var(--olive-line); }
+.investment li { padding: 14px 0; border-bottom: 1px solid var(--olive-line); font-size: 0.97rem; }
+
+.closing { background: var(--linen); }
+.contact { display: grid; border-top: 1px solid var(--rule); margin-top: 6px; }
+.contact a {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  padding: 16px 0; border-bottom: 1px solid var(--rule); text-decoration: none;
+}
+.contact .label { color: var(--olive); }
+.contact strong { font-family: var(--display); font-weight: 400; font-size: 1.3rem; color: var(--ink); }
+.contact a:hover strong { color: var(--olive); }
+.sign { font-family: var(--display); font-style: italic; font-size: 1.25rem; color: var(--ink); margin-top: 8px; }
+
+.site-foot { background: var(--linen); padding: 0 var(--gutter) calc(110px + env(safe-area-inset-bottom, 0px)); color: var(--ink-soft); font-size: 0.8rem; }
+@media (min-width: 760px) { .site-foot { padding-bottom: 40px; } }
+.site-foot .measure { border-top: 1px solid var(--rule); padding-top: 20px; }
+
+@media (prefers-reduced-motion: reduce) { .player { transition: none; } }
+</style>
+</head>
+<body>
+
+
+<div class="layout">
+  <aside class="stage" aria-label="Vídeo gravado no Pur Hair Spa">
+
+    <div class="player-slot">
+      <div class="frame" id="frame">
+        <div class="player" id="player">
+          <video id="video" src="media/pur-experiencia.mp4" poster="media/poster-experiencia.jpg" autoplay muted loop playsinline preload="auto"></video>
+          <button class="play" id="play" type="button" aria-label="Assistir ao vídeo" hidden>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>
+          </button>
+          <div class="mini-actions">
+            <button type="button" id="miniSound" aria-label="Ativar som">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 6h3l4-3v10L5 10H2z" fill="currentColor" stroke="none"/><path id="miniWave" d="M11.5 5.5a3.5 3.5 0 0 1 0 5"/></svg>
+            </button>
+            <button type="button" id="miniClose" aria-label="Fechar janela do vídeo">
+              <svg viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="switch" role="group" aria-label="Escolher vídeo">
+          <button type="button" data-src="media/pur-experiencia.mp4" data-poster="media/poster-experiencia.jpg" aria-pressed="true">Experiência</button>
+          <button type="button" data-src="media/pur-ambiente.mp4" data-poster="media/poster-ambiente.jpg" aria-pressed="false">Ambiente</button>
+        </div>
+        <div class="under">
+          <span>Gravado pela Visto no Pur Hair Spa</span>
+          <button class="sound" type="button" id="sound" aria-pressed="false">Ativar som</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header class="intro">
+      <div class="measure">
+        <p class="label">Visto Studio para Pur Hair Spa</p>
+        <h1>Proposta de parceria <em>audiovisual</em></h1>
+        <p class="lead">Uma produção contínua para registrar o cuidado de cada atendimento e levar a essência do Pur, e de cada profissional, para além do salão.</p>
+      </div>
+    </header>
+
+    <section aria-labelledby="sobre">
+      <div class="measure section-body">
+        <p class="label">Quem somos</p>
+        <h2 id="sobre">Sobre a Visto Studio</h2>
+        <p class="first">Somos uma produtora audiovisual que transforma experiências em imagem. Captamos, editamos e cuidamos de cada detalhe para que uma marca seja vista como realmente é.</p>
+        <p>No Pur, queremos estar presentes na rotina e registrar o que torna o espaço único: o ambiente, o cuidado e o talento de quem atende.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="proposta">
+      <div class="measure section-body">
+        <p class="label">A proposta</p>
+        <h2 id="proposta">Uma produção que acompanha <em>a rotina do Pur</em></h2>
+        <p class="first">Estaremos no salão três vezes por semana, acompanhando atendimentos, finalizações e transformações no ritmo natural da casa, sem interferir na experiência das clientes.</p>
+        <p>Cada visita vira conteúdo para o perfil do Pur e para o portfólio de cada profissional, em vídeos verticais prontos para o Feed e para publicações em collab.</p>
+        <ul class="facts">
+          <li><strong>3 visitas</strong><span>por semana no salão</span></li>
+          <li><strong>6 a 8</strong><span>vídeos por semana, em média</span></li>
+          <li><strong>3 vídeos</strong><span>por mês para cada profissional</span></li>
+          <li><strong>Feed e collab</strong><span>formato vertical, pronto para publicar</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="profissional">
+      <div class="measure section-body">
+        <p class="label">Para os profissionais</p>
+        <h2 id="profissional">O seu trabalho, <em>bem registrado</em></h2>
+        <p class="first">Cada profissional recebe três vídeos por mês, feitos a partir do próprio trabalho e com a sua identidade, prontos para o seu perfil e para collab com o Pur.</p>
+        <p>Mês a mês, forma-se um portfólio elegante e verdadeiro, que mostra com clareza o cuidado de cada atendimento.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="funciona">
+      <div class="measure section-body">
+        <p class="label">Como funciona</p>
+        <h2 id="funciona">Simples, do início à entrega</h2>
+        <ol class="steps">
+          <li><div><b>Adesão</b><span>Formamos o grupo com, no mínimo, cinco cabeleireiros.</span></div></li>
+          <li><div><b>Conversa individual</b><span>Entendemos o estilo e o trabalho de cada profissional.</span></div></li>
+          <li><div><b>Gravações no salão</b><span>Três visitas por semana, sempre no ritmo da casa.</span></div></li>
+          <li><div><b>Entrega</b><span>Três vídeos por mês para cada profissional.</span></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="investment" aria-labelledby="investimento">
+      <div class="measure section-body">
+        <p class="label" id="investimento">Investimento</p>
+        <div class="price"><span class="cur">R$</span><span class="num">500</span></div>
+        <p class="price-note">por profissional, ao mês</p>
+        <ul>
+          <li>Valor fixo mensal</li>
+          <li>Três vídeos garantidos por mês para o Feed</li>
+          <li>Gravações presenciais três vezes por semana</li>
+        </ul>
+        <p>Condição válida a partir da adesão de cinco cabeleireiros, o que torna possível a nossa presença constante no salão.</p>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="comecar">
+      <div class="measure section-body">
+        <p class="label">Próximos passos</p>
+        <h2 id="comecar">Vamos começar?</h2>
+        <p class="first">Assim que o grupo inicial estiver formado, alinhamos os detalhes com cada profissional e iniciamos as gravações.</p>
+        <p class="sign">Será um prazer registrar o cuidado do Pur.</p>
+        <div class="contact">
+          <a href="https://wa.me/5581985357559" target="_blank" rel="noopener"><span class="label">WhatsApp</span><strong>(81) 98535-7559</strong></a>
+          <a href="https://instagram.com/visto_studio" target="_blank" rel="noopener"><span class="label">Instagram</span><strong>@visto_studio</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <div class="measure">Visto Studio · Produção audiovisual e estratégia de imagem</div>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var video = document.getElementById('video');
+  var player = document.getElementById('player');
+  var frame = document.getElementById('frame');
+  var sound = document.getElementById('sound');
+  var miniSound = document.getElementById('miniSound');
+  var miniWave = document.getElementById('miniWave');
+  var miniClose = document.getElementById('miniClose');
+  var chips = document.querySelectorAll('.switch button');
+  var desktop = window.matchMedia('(min-width: 760px)');
+  var dismissed = false;
+
+  function syncSound() {
+    var on = !video.muted;
+    sound.textContent = on ? 'Desativar som' : 'Ativar som';
+    sound.setAttribute('aria-pressed', String(on));
+    miniSound.setAttribute('aria-label', on ? 'Desativar som' : 'Ativar som');
+    miniWave.style.opacity = on ? '1' : '0.25';
+  }
+  function toggleSound(e) {
+    if (e) e.stopPropagation();
+    video.muted = !video.muted;
+    video.play().catch(function () {});
+    syncSound();
+  }
+  sound.addEventListener('click', toggleSound);
+  miniSound.addEventListener('click', toggleSound);
+
+  chips.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.getAttribute('aria-pressed') === 'true') return;
+      chips.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      video.poster = btn.dataset.poster;
+      video.src = btn.dataset.src;
+      video.play().catch(function () {});
+    });
+  });
+
+  // Janela flutuante no celular: o vídeo continua visível durante a leitura.
+  function setFloating(on) { player.classList.toggle('floating', on && !desktop.matches && !dismissed); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      var e = entries[0];
+      var above = e.boundingClientRect.bottom < 0;
+      if (e.isIntersecting) dismissed = false;
+      setFloating(!e.isIntersecting && above);
+    }, { threshold: 0 }).observe(frame);
+  }
+  desktop.addEventListener && desktop.addEventListener('change', function () { if (desktop.matches) player.classList.remove('floating'); });
+  miniClose.addEventListener('click', function (e) { e.stopPropagation(); dismissed = true; player.classList.remove('floating'); });
+  player.addEventListener('click', function () {
+    if (player.classList.contains('floating')) frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // Se o navegador bloquear a reprodução automática, mostra o botão de play.
+  var play = document.getElementById('play');
+  function tryPlay() {
+    var p = video.play();
+    if (p && p.catch) p.then(function () { play.hidden = true; }).catch(function () { play.hidden = false; });
+  }
+  video.addEventListener('playing', function () { play.hidden = true; });
+  video.addEventListener('pause', function () { if (!video.ended) play.hidden = false; });
+  play.addEventListener('click', function (e) { e.stopPropagation(); video.muted = false; syncSound(); tryPlay(); });
+  video.addEventListener('click', function () { if (video.paused) tryPlay(); });
+  video.muted = true;
+  tryPlay();
+  setTimeout(function () { if (video.paused) play.hidden = false; }, 1500);
+
+  syncSound();
+})();
+</script>
+
+</body>
+</html>
