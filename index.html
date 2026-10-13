@@ -232,9 +232,6 @@ p { margin: 0; text-wrap: pretty; }
       <div class="frame" id="frame">
         <div class="player" id="player">
           <video id="video" src="media/pur-experiencia.mp4" poster="media/poster-experiencia.jpg" autoplay muted loop playsinline preload="auto"></video>
-          <button class="play" id="play" type="button" aria-label="Assistir ao vídeo" hidden>
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>
-          </button>
           <div class="mini-actions">
             <button type="button" id="miniSound" aria-label="Ativar som">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 6h3l4-3v10L5 10H2z" fill="currentColor" stroke="none"/><path id="miniWave" d="M11.5 5.5a3.5 3.5 0 0 1 0 5"/></svg>
@@ -401,19 +398,15 @@ p { margin: 0; text-wrap: pretty; }
     if (player.classList.contains('floating')) frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
-  // Se o navegador bloquear a reprodução automática, mostra o botão de play.
-  var play = document.getElementById('play');
-  function tryPlay() {
-    var p = video.play();
-    if (p && p.catch) p.then(function () { play.hidden = true; }).catch(function () { play.hidden = false; });
-  }
-  video.addEventListener('playing', function () { play.hidden = true; });
-  video.addEventListener('pause', function () { if (!video.ended) play.hidden = false; });
-  play.addEventListener('click', function (e) { e.stopPropagation(); video.muted = false; syncSound(); tryPlay(); });
-  video.addEventListener('click', function () { if (video.paused) tryPlay(); });
+  // Se o navegador bloquear a reprodução automática, o vídeo começa no primeiro toque ou rolagem.
+  function tryPlay() { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+  function kick() { if (video.paused) tryPlay(); }
+  ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(function (ev) {
+    window.addEventListener(ev, kick, { passive: true });
+  });
+  video.addEventListener('click', kick);
   video.muted = true;
   tryPlay();
-  setTimeout(function () { if (video.paused) play.hidden = false; }, 1500);
 
   syncSound();
 })();
